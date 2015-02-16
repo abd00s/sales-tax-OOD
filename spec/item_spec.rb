@@ -38,4 +38,14 @@ RSpec.describe Item do
       expect(Item.new("Toy story books", 25, 3, true).sales_tax).to eq(0)
     end
   end
+
+  describe 'calculate_sales_tax' do
+    it 'Calculates 10% tax for taxable hard-coded input' do
+      expect(Item.new("potato", 25, 3, true).calculate_sales_tax).to eq(7.5)
+    end
+
+    it 'Returns 0 sales tax for exempt hard-coded input' do
+      expect(Item.new("Toy story books", 25, 3, true).calculate_sales_tax).to eq(0)
+    end
+  end
 end

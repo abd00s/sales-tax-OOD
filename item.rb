@@ -34,12 +34,20 @@ class Item
     end
   end
 
+  def calculate_sales_tax
+    sub_total * sales_tax
+  end
+
+  def calculate_import_duty
+    sub_total * import_duty
+  end
+
   def grand_total
     sub_total + total_tax_amount
   end
 
   def total_tax_amount
-    apply_sales_tax + apply_import_duty
+    calculate_sales_tax + calculate_import_duty
   end
 end
 

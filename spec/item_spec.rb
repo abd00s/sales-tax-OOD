@@ -76,4 +76,22 @@ RSpec.describe Item do
       expect(Item.new("Toy story books", 25, 3, true).total_tax_amount).to eq(25*3*0.05)
     end
   end
+
+  describe 'grand_total' do
+    it 'Returns base price for non-imported and exempt hard-coded input' do
+      expect(Item.new("Toy story books", 25, 3, false).grand_total).to eq(25*3)
+    end
+
+    it 'Applies 15% total tax for imported and taxable hard-coded input' do
+      expect(Item.new("potato", 25, 3, true).grand_total).to eq(25*3*1.15)
+    end
+
+    it 'Applies 10% total tax for non-imported and taxable hard-coded input' do
+      expect(Item.new("potato", 25, 3, false).grand_total).to eq(25*3*1.1)
+    end
+
+    it 'Applies 5% total tax for imported and exempt hard-coded input' do
+      expect(Item.new("Toy story books", 25, 3, true).grand_total).to eq(25*3*1.05)
+    end
+  end
 end

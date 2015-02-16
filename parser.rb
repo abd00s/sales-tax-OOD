@@ -1,5 +1,6 @@
 class Parser
   require './item'
+  attr_reader :products
   def initialize(file)
     @products = []
     @file = file
@@ -20,7 +21,7 @@ class Parser
   end
 
   def extract_item_details(item)
-    quantity = item.match(/\d+/)
+    quantity = item.match(/\d+/).to_s.to_i
     import = if item.match(/import/) 
       true 
     else 

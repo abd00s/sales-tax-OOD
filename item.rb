@@ -19,7 +19,11 @@ class Item
   end
 
   def is_tax_exempt?
-    @name =~ /book|pill|chocolate/
+    if @name =~ /book|pill|chocolate/
+      true
+    else
+      false
+    end
   end
 
   def sales_tax
@@ -39,10 +43,4 @@ class Item
   end
 end
 
-product = Item.new("potato", 25, 3, true)
-puts product.sub_total
-puts product.import_duty
-puts product.is_tax_exempt? 
-puts product.sales_tax
-# puts product.grand_total
-# puts product.total_tax_amount
+

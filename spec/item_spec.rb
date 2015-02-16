@@ -48,4 +48,14 @@ RSpec.describe Item do
       expect(Item.new("Toy story books", 25, 3, true).calculate_sales_tax).to eq(0)
     end
   end
+
+  describe 'calculate_import_duty' do
+    it 'Calculates 5% duty for imported hard-coded input' do
+      expect(Item.new("potato", 25, 3, true).calculate_import_duty).to eq(25*3*0.05)
+    end
+
+    it 'Returns 0 import duty for non-imported hard-coded input' do
+      expect(Item.new("Toy story books", 25, 3, false).calculate_import_duty).to eq(0)
+    end
+  end
 end

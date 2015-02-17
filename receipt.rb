@@ -14,11 +14,14 @@ class Receipt
   end
 
   def display_receipt
+    @output = ""
     @items.each do |item|
-      puts "#{item.quantity} #{item.name}: #{prettier_number(item.grand_total)}"
+      @output += "#{item.quantity} #{item.name}: #{prettier_number(item.grand_total)}\n"
     end
-    puts "Sales Taxes: " + prettier_number(calculate_sales_taxes)
-    puts "Total: " + prettier_number(calculate_total)
+    @output += "Sales Taxes: " + prettier_number(calculate_sales_taxes) + "\n"
+    @output += "Total: " + prettier_number(calculate_total)
+    print @output
+    return @output
   end
 
   def calculate_sales_taxes

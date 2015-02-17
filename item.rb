@@ -44,7 +44,7 @@ class Item
   end
 
   def total_tax_amount
-    (calculate_sales_tax + calculate_import_duty)/100
+    (calculate_sales_tax + calculate_import_duty)/100.0
   end
 
   def grand_total

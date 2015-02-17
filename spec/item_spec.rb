@@ -11,7 +11,7 @@ RSpec.describe Item do
 
   describe 'import_duty' do
     it 'Return 5% tax for imported hard-coded input' do
-      expect(Item.new("potato", 25, 3, true).import_duty).to eq(0.05)
+      expect(Item.new("potato", 25, 3, true).import_duty).to eq(5)
     end
 
     it 'Return 0% tax for non-imported hard-coded input' do
@@ -31,7 +31,7 @@ RSpec.describe Item do
 
   describe 'sales_tax' do
     it 'Returns 10% sales tax for taxable hard-coded input' do
-      expect(Item.new("potato", 25, 3, true).sales_tax).to eq(0.1)
+      expect(Item.new("potato", 25, 3, true).sales_tax).to eq(10)
     end
 
     it 'Returns 0% sales tax for exempt hard-coded input' do
@@ -41,7 +41,7 @@ RSpec.describe Item do
 
   describe 'calculate_sales_tax' do
     it 'Calculates 10% tax for taxable hard-coded input' do
-      expect(Item.new("potato", 25, 3, true).calculate_sales_tax).to eq(7.5)
+      expect(Item.new("potato", 25, 3, true).calculate_sales_tax).to eq(7.5*100)
     end
 
     it 'Returns 0 sales tax for exempt hard-coded input' do
@@ -51,7 +51,7 @@ RSpec.describe Item do
 
   describe 'calculate_import_duty' do
     it 'Calculates 5% duty for imported hard-coded input' do
-      expect(Item.new("potato", 25, 3, true).calculate_import_duty).to eq(25*3*0.05)
+      expect(Item.new("potato", 25, 3, true).calculate_import_duty).to eq(25*3*5)
     end
 
     it 'Returns 0 import duty for non-imported hard-coded input' do

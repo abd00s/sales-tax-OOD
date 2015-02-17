@@ -2,18 +2,18 @@ class Item
   attr_reader :name, :price, :quantity, :imported
   def initialize(name, price, quantity, imported)
     @name = name
-    @price = price
+    @price = price * 100
     @quantity = quantity
     @imported = imported
   end
 
   def sub_total
-    @price * @quantity
+    (@price * @quantity)/100
   end
 
   def import_duty
     if @imported 
-      0.05
+      5
     else
       0
     end
@@ -29,26 +29,31 @@ class Item
 
   def sales_tax
     unless is_tax_exempt? 
-      0.1 
+      10
     else
       0
     end
   end
 
   def calculate_sales_tax
-    sub_total * sales_tax
+    formatted_amount(sub_total * sales_tax)
   end
 
   def calculate_import_duty
-    sub_total * import_duty
+    formatted_amount(sub_total * import_duty)
   end
 
   def total_tax_amount
-    calculate_sales_tax + calculate_import_duty
+    (calculate_sales_tax + calculate_import_duty)/100
   end
 
   def grand_total
     sub_total + total_tax_amount
+  end
+
+  def formatted_amount(number)
+    return number if (number % 5) == 0
+    (number + 5 - (number % 5))
   end
 end
 

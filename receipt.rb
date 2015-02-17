@@ -15,10 +15,10 @@ class Receipt
 
   def display_receipt
     @items.each do |item|
-      puts "#{item.quantity} #{item.name}: #{item.price}"
+      puts "#{item.quantity} #{item.name}: #{prettier_number(item.grand_total)}"
     end
-    puts "Sales Taxes: " + calculate_sales_taxes
-    puts "Total: " + calculate_total
+    puts "Sales Taxes: " + prettier_number(calculate_sales_taxes)
+    puts "Total: " + prettier_number(calculate_total)
   end
 
   def calculate_sales_taxes
@@ -35,15 +35,16 @@ class Receipt
     @total.to_s    
   end
 
-  def self.run
-    Receipt.new
+  def prettier_number(number) 
+    sprintf("%.2f", number)
   end
 
   def parser_invoker(file)
     parsed_products = Parser.new(file).products
   end
+
+  def self.run
+    Receipt.new
+  end
 end
 
-rec = Receipt.run
-rec.add_items("input3.txt")
-rec.display_receipt

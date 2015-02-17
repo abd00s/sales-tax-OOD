@@ -34,7 +34,7 @@ Input 3:
 
 1 packet of headache pills at 9.75
 
-1 box of imported chocolates at 11.25
+1 imported box of chocolates at 11.25
 
  
 OUTPUT
